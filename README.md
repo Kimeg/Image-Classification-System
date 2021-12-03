@@ -14,9 +14,19 @@
 > --> Test set       ( 200 images ) \
 
 
--Usage: 
-> $ python run.py tf      ( for tensorflow backend) \
-> $ python run.py torch   ( for pytorch backend) \
+-Usage:
+> [tensorflow backend] \
+> $ python run.py tf \
+> 
+> [torch backend] \
+> $ python run.py torch \
+
+
+-Workflow:
+> [1] Generate images using data augmentation.
+> [2] Split image data into training, validation and test sets.
+> [3] Train convolutional neural network model using specified deep learning framework.
+> [4] Test model using test set.  
 
 
 -Output:
