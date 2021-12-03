@@ -11,21 +11,21 @@
 > [2] Size: ( these are default settings, please configure according to your needs. ) \
 > --> Training set   ( 1,000 images ) \
 > --> Validation set ( 300 images ) \
-> --> Test set       ( 200 images ) \
+> --> Test set       ( 200 images ) 
 
 
 -Usage:
 > [tensorflow backend] \
-> $ python run.py tf \
+> $ python run.py tf 
 > 
 > [torch backend] \
-> $ python run.py torch \
+> $ python run.py torch 
 
 
 -Workflow:
-> [1] Generate images using data augmentation.
-> [2] Split image data into training, validation and test sets.
-> [3] Train convolutional neural network model using specified deep learning framework.
+> [1] Generate images using data augmentation. \
+> [2] Split image data into training, validation and test sets. \
+> [3] Train convolutional neural network model using specified deep learning framework. \
 > [4] Test model using test set.  
 
 
