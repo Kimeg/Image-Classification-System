@@ -11,6 +11,7 @@ import random
 import torch
 import glob
 import math
+import ray
 import sys
 import os
 
@@ -19,6 +20,7 @@ if torch.cuda.is_available():
 else:
     DEVICE = torch.device('cpu')
 
+@ray.remote
 def parallel_proc(args):
     i, o = args
 
@@ -46,12 +48,15 @@ def generate_data():
         try: os.makedirs(o)
         except: pass
         
-        pool = mp.Pool(nCPU)
-        r = pool.map_async(parallel_proc, [(i, o) for i in range(nSample)])
-        r.wait()
+        #pool = mp.Pool(nCPU)
+        #r = pool.map_async(parallel_proc, [(i, o) for i in range(nSample)])
+        #r.wait()
 
-        pool.close()
-        pool.join()
+        #pool.close()
+        #pool.join()
+
+        jobs = [parallel_proc((i, o)) for i in range(nSample)]
+        ray.get(jobs)
     return
 
 def test(func, name):
@@ -95,4 +100,7 @@ if __name__=="__main__":
     shapes = [('square', createS), ('triangle', createT), ('circle', createC)]
     tasks = [fill, scale, rotate, translate]
     output_dir = f'./image'
+
+    ray.init(num_cpus=nCPU)
+
     main()
