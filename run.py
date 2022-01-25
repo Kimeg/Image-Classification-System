@@ -55,7 +55,7 @@ def generate_data():
         #pool.close()
         #pool.join()
 
-        jobs = [parallel_proc((i, o)) for i in range(nSample)]
+        jobs = [parallel_proc.remote((i, o)) for i in range(nSample)]
         ray.get(jobs)
     return
 
